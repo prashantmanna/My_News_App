@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/home"
+        android:title="HOME"
+        android:icon="@drawable/home"/>
+    <item android:id="@+id/sports"
+        android:title="SPORTS"
+        android:iconTintMode="src_over"
+        android:icon="@drawable/cricket"/>
+    <item android:id="@+id/entertainment"
+        android:title="MOVIES"
+        android:icon="@drawable/video"/>
+    <item android:id="@+id/international"
+        android:title="INTERNATIONAL"
+        android:icon="@drawable/international"/>
+    <item android:id="@+id/national"
+        android:title="NATIONAL"
+        android:icon="@drawable/news"/>
+</menu>
