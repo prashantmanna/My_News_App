@@ -1,59 +1,101 @@
 package com.example.mynewsapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mynewsapp.API.ApiInterface
+import com.example.mynewsapp.API.Constants.Companion.API_KEY
+import com.example.mynewsapp.adapter.Adapter
+import com.example.mynewsapp.models.Article
+import com.example.mynewsapp.models.NewsResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [home.newInstance] factory method to
- * create an instance of this fragment.
- */
 class home : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var adapter: Adapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var arrayList: ArrayList<Article>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        val context: Context = requireContext()
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        arrayList = ArrayList()
+        recyclerView = view.findViewById(R.id.recyclerHome)
+        adapter = Adapter(context, arrayList)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        getNews()
+        searchNews("technology")
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment home.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            home().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun getNews() {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://newsapi.org/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val api: ApiInterface = retrofit.create(ApiInterface::class.java)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response: Response<NewsResponse> = withContext(Dispatchers.IO) {
+                    api.getHeadlines("in", 1, API_KEY)
                 }
+                if (response.isSuccessful) {
+                    val newsResponse: NewsResponse? = response.body()
+                    if (newsResponse != null) {
+                        arrayList.addAll(newsResponse.articles)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            } catch (e: Exception) {
+                // Handle the exception
             }
+        }
+    }
+
+    private fun searchNews(query: String) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://newsapi.org/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val api: ApiInterface = retrofit.create(ApiInterface::class.java)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response: Response<NewsResponse> = withContext(Dispatchers.IO) {
+                    api.searchNews(query, 1, API_KEY)
+                }
+                if (response.isSuccessful) {
+                    val newsResponse: NewsResponse? = response.body()
+                    if (newsResponse != null) {
+                        arrayList.addAll(newsResponse.articles)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            } catch (e: Exception) {
+                // Handle the exception
+            }
+        }
     }
 }
