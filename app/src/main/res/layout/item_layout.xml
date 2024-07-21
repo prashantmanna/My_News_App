@@ -23,28 +23,33 @@
                 android:id="@+id/mainHeadlines_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Here Main News Will Appear"
-                android:textSize="28sp"
-                 />
+                android:textSize="20sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/newsDescription_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="Text content"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    />
+
+                    <TextView
+                        android:id="@+id/newsDescription_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins"
+                        android:text="Text content"
+                        android:textSize="18sp" />
+
+
+
+
+
                 <ImageView
                     android:id="@+id/newsImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/ic_launcher_background" />
 
 
@@ -52,26 +57,28 @@
 
             </LinearLayout>
 
-
             <TextView
+
                 android:id="@+id/Auther"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Auther"
-                android:textSize="16sp"
                 android:layout_marginStart="5dp"
-                />
+                android:fontFamily="@font/poppins_bold"
+                android:text="Auther"
+                android:textSize="16sp" />
 
             <TextView
+                android:gravity="bottom"
                 android:id="@+id/published"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Published At"
                 android:layout_marginStart="5dp"
-                android:textSize="18sp"
-                 />
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Published At"
+                android:textSize="18sp" />
+
+
+
         </LinearLayout>
 
 

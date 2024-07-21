@@ -1,5 +1,6 @@
 package com.example.mynewsapp.API
 
+import androidx.annotation.Size
 import com.example.mynewsapp.API.Constants.Companion.API_KEY
 import com.example.mynewsapp.models.NewsResponse
 import retrofit2.Response
@@ -10,14 +11,15 @@ interface ApiInterface {
     @GET("top-headlines")
     suspend fun getHeadlines(
         @Query("country") country: String,
-        @Query("page") pageNumber: Int,
+        @Query("pageSize") pageSize: Int,
         @Query("apiKey") apiKey: String = API_KEY
     ): Response<NewsResponse>
 
-    @GET("everything")
-    suspend fun searchNews(
-        @Query("q") query: String,
-        @Query("page") pageNumber: Int,
+    @GET("top-headlines")
+    suspend fun getCategory(
+        @Query("country") country: String,
+        @Query("category") category: String,
+        @Query("pageSize") pageSize: Int,
         @Query("apiKey") apiKey: String = API_KEY
     ): Response<NewsResponse>
 }

@@ -12,9 +12,9 @@
         android:title="MOVIES"
         android:icon="@drawable/video"/>
     <item android:id="@+id/international"
-        android:title="INTERNATIONAL"
+        android:title="HEALTH"
         android:icon="@drawable/international"/>
     <item android:id="@+id/national"
-        android:title="NATIONAL"
+        android:title="TECHNOLOGY"
         android:icon="@drawable/news"/>
 </menu>

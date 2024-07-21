@@ -42,7 +42,7 @@ class home : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         getNews()
-        searchNews("technology")
+
 
         return view
     }
@@ -58,7 +58,7 @@ class home : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val response: Response<NewsResponse> = withContext(Dispatchers.IO) {
-                    api.getHeadlines("in", 1, API_KEY)
+                    api.getHeadlines("in", 100, API_KEY)
                 }
                 if (response.isSuccessful) {
                     val newsResponse: NewsResponse? = response.body()
@@ -73,29 +73,4 @@ class home : Fragment() {
         }
     }
 
-    private fun searchNews(query: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val api: ApiInterface = retrofit.create(ApiInterface::class.java)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                val response: Response<NewsResponse> = withContext(Dispatchers.IO) {
-                    api.searchNews(query, 1, API_KEY)
-                }
-                if (response.isSuccessful) {
-                    val newsResponse: NewsResponse? = response.body()
-                    if (newsResponse != null) {
-                        arrayList.addAll(newsResponse.articles)
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            } catch (e: Exception) {
-                // Handle the exception
-            }
-        }
-    }
 }
