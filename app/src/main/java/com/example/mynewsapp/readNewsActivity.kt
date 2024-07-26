@@ -10,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 
 class readNewsActivity : AppCompatActivity() {
     private lateinit var webView: WebView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,7 +32,7 @@ class readNewsActivity : AppCompatActivity() {
         }
 
 
-        val url: String? = intent.getStringExtra("url")
+        var url:String ?= intent.getStringExtra("url")
         if (url.isNullOrBlank()) {
             // Handle invalid or missing URL
             // e.g., show an error message or close the activity

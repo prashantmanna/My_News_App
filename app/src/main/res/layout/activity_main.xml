@@ -18,11 +18,11 @@
         app:title="My News App"
         app:titleTextColor="@color/white"
         app:titleCentered="true"
-        app:logo="@drawable/global"
+        app:logo="@drawable/news"
         app:logoScaleType="fitXY"
         app:logoAdjustViewBounds="true"
         app:logoDescription="My News App"
-
+        app:menu="@menu/search_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

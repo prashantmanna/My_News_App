@@ -1,9 +1,15 @@
 package com.example.mynewsapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.FrameLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -19,20 +25,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        Thread.sleep(3000)
+        installSplashScreen()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         bottomNav = findViewById(R.id.bottomNav)
         frame = findViewById(R.id.frame)
         toolbar = findViewById(R.id.materialToolbar)
+        setSupportActionBar(toolbar)
         val fragmentManager =  supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame,home())
         fragmentTransaction.commit()
+
+
 
         bottomNav.setOnItemSelectedListener {
 
@@ -55,4 +65,9 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
     }
+    fun startAct(activity : AppCompatActivity){
+        val intent = Intent(applicationContext,activity::class.java)
+    }
+
+
 }
