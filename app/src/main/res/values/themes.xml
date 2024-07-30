@@ -1,16 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyNewsApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.MyNewsApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="Theme.MyNewsApp" parent="Base.Theme.MyNewsApp" />
-    
-    
+
     <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/global</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.MyNewsApp</item>
+        <item name="toolbarStyle">@style/Base.Theme.MyNewsApp</item>
+        <item name="android:animationDuration">1000</item>
+        <item name="animationMode">fade</item>
+        <item name="actionBarTheme">@style/Theme.MaterialComponents.NoActionBar</item>
     </style>
 </resources>
