@@ -11,8 +11,6 @@
     app:cardElevation="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Here Main News Will Appear"
+                android:text="@string/here_main_news_will_appear"
                 android:textSize="20sp" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins"
-                        android:text="Text content"
+                        android:text="@string/text_content"
                         android:textSize="18sp" />
 
 
@@ -64,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="Auther"
+                android:text="@string/auther"
                 android:textSize="16sp" />
 
             <TextView
@@ -74,12 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Published At"
+                android:text="@string/published_at"
                 android:textSize="18sp" />
 
-
-
         </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

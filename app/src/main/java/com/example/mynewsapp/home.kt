@@ -1,5 +1,6 @@
 package com.example.mynewsapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -47,6 +48,7 @@ class home : Fragment() {
         return view
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun getNews() {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://newsapi.org/v2/")
