@@ -15,7 +15,6 @@ import com.example.mynewsapp.R
 import com.example.mynewsapp.models.Article
 import com.example.mynewsapp.readNewsActivity
 
-
 class Adapter(private val context: Context, private val data: ArrayList<Article>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     private var lastPosition = -1
